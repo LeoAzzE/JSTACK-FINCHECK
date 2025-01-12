@@ -1,10 +1,10 @@
+/* eslint-disable prettier/prettier */
 import { plainToInstance } from 'class-transformer';
 import { IsNotEmpty, IsString, NotEquals, validateSync } from 'class-validator';
 
 class Env {
   @IsString()
   @IsNotEmpty()
-  @NotEquals('CHAVESECRETADOPROJETOFINCHECK')
   dbUrl: string;
 
   @IsString()
