@@ -1,14 +1,14 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Req } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { ActiveUserId } from 'src/shared/decorators/ActiveUserId';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get('/me')
-  me(@Req() request: any) {
-    console.log({ meUserId: request.userId });
-    return this.usersService.getUserByid('userId');
+  me(@ActiveUserId() userId: string) {
+    return this.usersService.getUserByid(userId);
   }
 }

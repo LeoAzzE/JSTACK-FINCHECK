@@ -1,9 +1,11 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SigninDto } from './dto/signin';
 import { SignupDto } from './dto/signup';
+import { IsPublic } from 'src/shared/decorators/isPublic';
 
+@IsPublic()
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -14,7 +16,7 @@ export class AuthController {
   }
 
   @Post('signup')
-  create(@Body() signupDto: SignupDto) {
+  signup(@Body() signupDto: SignupDto) {
     return this.authService.signup(signupDto);
   }
 }
